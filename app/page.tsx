@@ -3,43 +3,40 @@ import { ProtocolDemo } from "./components/ProtocolDemo";
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[#F5F0E8] px-8 md:px-16 lg:px-24 py-20">
-        <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
+      {/* Hero + Stats as one block */}
+      <section className="bg-[#F5F0E8] px-8 md:px-16 lg:px-24 pt-20 pb-0">
+        <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
           x402 Protocol Demo
         </p>
         <h1 className="font-headline text-5xl text-black mb-4 leading-tight">
-          Pay-per-request on Stellar
+          There&apos;s a secret behind this paywall
         </h1>
-        <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
-          Micropayments using HTTP 402. Each API call costs{" "}
+        <p className="text-gray-600 text-base leading-relaxed max-w-lg mb-10">
+          Pay{" "}
           <span className="font-medium text-black">$0.001 USDC</span> on
-          Stellar testnet. No API keys, no accounts — just cryptography.
+          Stellar testnet to reveal it. No API keys, no accounts — just
+          cryptography and the x402 protocol.
         </p>
-      </section>
 
-      {/* Stats bar */}
-      <section className="bg-[#1A1A1A] px-8 md:px-16 lg:px-24">
-        <div className="grid grid-cols-3 divide-x divide-gray-700 max-w-2xl">
-          <div className="py-6 pr-6">
-            <p className="font-headline text-3xl text-white">$0.001</p>
-            <p className="text-sm text-gray-400 mt-1">per request (USDC)</p>
+        {/* Stats integrated into hero */}
+        <div className="grid grid-cols-3 max-w-lg border-t border-gray-300/60">
+          <div className="py-5 pr-6">
+            <p className="font-headline text-2xl text-black">$0.001</p>
+            <p className="text-xs text-gray-500 mt-0.5">per request</p>
           </div>
-          <div className="py-6 px-6">
-            <p className="font-headline text-3xl text-white">&lt; 5s</p>
-            <p className="text-sm text-gray-400 mt-1">settlement time</p>
+          <div className="py-5 px-6 border-x border-gray-300/60">
+            <p className="font-headline text-2xl text-black">&lt; 5s</p>
+            <p className="text-xs text-gray-500 mt-0.5">settlement</p>
           </div>
-          <div className="py-6 pl-6">
-            <p className="font-headline text-3xl text-white">Testnet</p>
-            <p className="text-sm text-gray-400 mt-1">
-              Stellar + OZ Facilitator
-            </p>
+          <div className="py-5 pl-6">
+            <p className="font-headline text-2xl text-black">Testnet</p>
+            <p className="text-xs text-gray-500 mt-0.5">Stellar + OZ</p>
           </div>
         </div>
       </section>
 
       {/* Demo */}
-      <main className="px-8 md:px-16 lg:px-24 py-16">
+      <main className="px-8 md:px-16 lg:px-24 py-10">
         <ProtocolDemo />
       </main>
     </>

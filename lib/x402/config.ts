@@ -10,7 +10,7 @@ export const FACILITATOR_API_KEY = process.env.FACILITATOR_API_KEY!;
 export const PRICE = "$0.001";
 
 export const routesConfig: RoutesConfig = {
-  "GET /api/joke": {
+  "GET /api/secret": {
     accepts: [
       {
         scheme: "exact",
@@ -20,20 +20,7 @@ export const routesConfig: RoutesConfig = {
       },
     ],
     description:
-      "Get a random developer joke — pay per request with USDC on Stellar",
-    mimeType: "application/json",
-  },
-  "POST /api/summarize": {
-    accepts: [
-      {
-        scheme: "exact",
-        price: PRICE,
-        network: NETWORK,
-        payTo: SERVER_ADDRESS,
-      },
-    ],
-    description:
-      "AI text summarization — pay per request with USDC on Stellar",
+      "Reveal a secret — pay per request with USDC on Stellar",
     mimeType: "application/json",
   },
 };

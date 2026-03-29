@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { ExactStellarScheme } from "@x402/stellar/exact/client";
 import { x402Client, x402HTTPClient } from "@x402/core/client";
 import { NETWORK, createWalletSigner } from "@/lib/stellar";
-import type { StepData } from "../components/ProtocolStep";
+import type { StepData } from "../components/flow/flow-config";
 
 interface UseX402PaymentParams {
   address: string | null;
@@ -32,13 +32,15 @@ export function useX402Payment({ address, kitReady }: UseX402PaymentParams) {
         step: number,
         label: string,
         status: "success" | "error",
-        detail: Record<string, unknown>
+        detail: Record<string, unknown>,
+        request?: StepData["request"]
       ) => {
         const entry: StepData = {
           step,
           label,
           status,
           detail,
+          request,
           timestamp: Date.now(),
           elapsed: Date.now() - startTime,
         };
@@ -55,7 +57,7 @@ export function useX402Payment({ address, kitReady }: UseX402PaymentParams) {
         emit(1, "Request sent (no payment)", "success", {
           method,
           url: endpoint,
-        });
+        }, { method, url: endpoint, body });
 
         const res1 = await fetch(endpoint, {
           method,
@@ -107,7 +109,7 @@ export function useX402Payment({ address, kitReady }: UseX402PaymentParams) {
 
         emit(4, "Re-sending with payment header", "success", {
           headersAdded: Object.keys(paymentHeaders),
-        });
+        }, { method, url: endpoint, body });
 
         const res2 = await fetch(endpoint, {
           method,

@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { useWallet } from "../hooks/useWallet";
 import { useX402Payment } from "../hooks/useX402Payment";
+import { useUsdcBalance } from "../hooks/useUsdcBalance";
 import { WalletBar } from "./WalletBar";
 import { PaymentActions } from "./PaymentActions";
-import { ProtocolTimeline } from "./ProtocolTimeline";
+import { ProtocolFlowDiagram } from "./flow";
+import { SecretReveal } from "./SecretReveal";
 
 export function ProtocolDemo() {
   const { address, connect, disconnect } = useWallet();
@@ -13,52 +15,41 @@ export function ProtocolDemo() {
     address,
     kitReady: true,
   });
-  const [text, setText] = useState("");
+  const { balance, refetch } = useUsdcBalance(address);
+
+  // Refetch balance when a payment flow finishes
+  const prevLoading = useRef(false);
+  useEffect(() => {
+    if (prevLoading.current && !loading) {
+      refetch();
+    }
+    prevLoading.current = loading;
+  }, [loading, refetch]);
 
   const connected = !!address;
 
   return (
-    <div className="max-w-2xl">
+    <div className="flex flex-col items-center max-w-4xl mx-auto">
+      <h2 className="font-headline text-2xl text-black mb-6">Try it</h2>
+
       <WalletBar
         address={address}
+        balance={balance}
         onConnect={connect}
         onDisconnect={disconnect}
       />
 
       <PaymentActions
-        text={text}
-        onTextChange={setText}
-        onJoke={() => runFlow("/api/joke")}
-        onSummarize={() => runFlow("/api/summarize", { text })}
+        onReveal={() => runFlow("/api/secret")}
         disabled={!connected || loading}
       />
 
-      <ProtocolTimeline steps={steps} loading={loading} />
+      {/* Horizontal protocol flow — full width */}
+      <div className="w-full">
+        <ProtocolFlowDiagram steps={steps} loading={loading} />
+      </div>
 
-      {steps.length === 0 && !loading && (
-        <div className="py-16 text-gray-400">
-          {connected ? (
-            <>
-              <p className="font-headline text-2xl text-gray-800">
-                Press a button to see the x402 flow
-              </p>
-              <p className="text-sm mt-3 text-gray-500">
-                Your wallet will sign the payment using Soroban auth entries
-              </p>
-            </>
-          ) : (
-            <>
-              <p className="font-headline text-2xl text-gray-800">
-                Connect your wallet to get started
-              </p>
-              <p className="text-sm mt-3 text-gray-500">
-                You need Freighter or another Stellar wallet with USDC on
-                testnet
-              </p>
-            </>
-          )}
-        </div>
-      )}
+      <SecretReveal steps={steps} />
     </div>
   );
 }
