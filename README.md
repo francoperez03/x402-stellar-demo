@@ -1,4 +1,4 @@
-# x402-next
+# x402-stellar-demo
 
 Pay-per-request API demo using the [x402 protocol](https://developers.stellar.org/docs/build/apps/x402) on Stellar. Built with Next.js 15, React 19, and Tailwind CSS 4.
 
