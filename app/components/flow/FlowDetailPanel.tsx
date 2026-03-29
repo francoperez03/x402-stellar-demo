@@ -1,6 +1,6 @@
 "use client";
 
-import type { FlowStepConfig, StepData } from "./flow-config";
+import type { FlowStepConfig, StepData } from "../../types/x402";
 
 function isImagePath(value: unknown): value is string {
   if (typeof value !== "string") return false;

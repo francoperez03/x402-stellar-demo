@@ -10,7 +10,7 @@ export const FACILITATOR_API_KEY = process.env.FACILITATOR_API_KEY!;
 export const PRICE = "$0.001";
 
 export const routesConfig: RoutesConfig = {
-  "GET /api/secret": {
+  "GET /api/content": {
     accepts: [
       {
         scheme: "exact",

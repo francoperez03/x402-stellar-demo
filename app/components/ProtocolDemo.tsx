@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useWallet } from "../hooks/useWallet";
-import { useX402Payment } from "../hooks/useX402Payment";
-import { useUsdcBalance } from "../hooks/useUsdcBalance";
+import { useWallet, useX402Payment, useUsdcBalance } from "../hooks";
 import { WalletBar } from "./WalletBar";
 import { PaymentActions } from "./PaymentActions";
 import { ProtocolFlowDiagram } from "./flow";
@@ -40,7 +38,7 @@ export function ProtocolDemo() {
       />
 
       <PaymentActions
-        onReveal={() => runFlow("/api/secret")}
+        onReveal={() => runFlow("/api/content")}
         disabled={!connected || loading}
       />
 

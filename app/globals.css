@@ -39,3 +39,16 @@ body {
 .flow-node-complete {
   animation: flow-fill 0.5s ease-out forwards;
 }
+
+@keyframes flow-arrow-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.flow-arrow-animate {
+  animation: flow-arrow-draw 0.4s ease-out forwards;
+}

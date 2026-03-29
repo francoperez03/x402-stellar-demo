@@ -7,12 +7,14 @@ Pay-per-request API demo using x402 protocol on Stellar. Next.js 15 + React 19 +
 ## Architecture
 
 ```
-lib/stellar/     → Stellar blockchain layer (network, wallet signer)
-lib/x402/        → x402 protocol layer (adapter, config, server middleware)
-app/components/ui/ → Design system primitives (Button, Card, StatusDot, Textarea)
-app/components/  → Feature components (WalletBar, PaymentActions, ProtocolTimeline)
-app/hooks/       → React hooks (useWallet, useX402Payment)
-app/api/         → Protected API routes (joke, summarize)
+lib/stellar/         → Stellar blockchain layer (network, wallet signer)
+lib/x402/            → x402 protocol layer (adapter, config, server middleware)
+app/types/           → Shared TypeScript interfaces (StepData, FlowStepConfig)
+app/hooks/           → React hooks (useWallet, useX402Payment, useUsdcBalance)
+app/components/ui/   → Design system primitives (Button, Card, StatusDot)
+app/components/flow/ → Protocol flow visualization (6-step diagram)
+app/components/      → Feature components (WalletBar, PaymentActions, SecretReveal, ProtocolDemo)
+app/api/content/     → Protected API route ($0.001 USDC per request)
 ```
 
 ## Skills
@@ -31,7 +33,7 @@ npm run build    # Production build
 
 ## Environment
 
-Requires `.env.local` with:
+Requires `.env.local` (see `.env.example` for template):
 - `SERVER_STELLAR_ADDRESS` — Stellar public key that receives payments
 - `FACILITATOR_URL` — OZ Channels facilitator endpoint
 - `FACILITATOR_API_KEY` — API key from OZ Channels dashboard
