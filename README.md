@@ -7,64 +7,69 @@ Each API call costs **$0.001 USDC** on Stellar testnet. No API keys, no accounts
 ## How it works
 
 ```
-Browser                          Next.js API                    OZ Facilitator
-  │                                  │                              │
-  ├─ GET /api/content ──────────────►                               │
-  │                                  │                              │
-  ◄── 402 + payment requirements ────┤                              │
-  │                                  │                              │
-  ├─ Wallet signs auth entry ─┐      │                              │
-  │  (Freighter/Hana popup)   │      │                              │
-  │◄──────────────────────────┘      │                              │
-  │                                  │                              │
-  ├─ GET /api/content + X-Payment ──►                               │
-  │                                  ├─ verify + settle ───────────►│
-  │                                  │◄─ settlement confirmed ──────┤
-  ◄── 200 OK { message, gif } ──────┤                              │
+Client                Server               Wallet              Facilitator
+  │                      │                    │                      │
+  ├── GET /api/content ─►│                    │                      │
+  │                      │                    │                      │
+  │◄── 402 + payment ────┤                    │                      │
+  │    requirements      │                    │                      │
+  │                      │                    │                      │
+  ├── sign auth entry ───┼───────────────────►│                      │
+  │◄── signed ───────────┼────────────────────┤                      │
+  │                      │                    │                      │
+  ├── GET + X-Payment ──►│                    │                      │
+  │                      ├── verify + settle ─┼─────────────────────►│
+  │                      │◄── confirmed ──────┼──────────────────────┤
+  │◄── 200 OK { gif } ──┤                    │                      │
 ```
 
-1. Client sends a request without payment → gets **HTTP 402** with payment requirements
-2. Client parses the 402, creates an x402 payment payload — wallet signs a **Soroban auth entry** (USDC SAC transfer authorization)
-3. Client re-sends the request with the `X-Payment` header
-4. Server verifies the payment via the **OZ Facilitator**, settles on-chain, returns the response
+1. **Request** — Client sends `GET /api/content` without payment
+2. **402 Received** — Server responds with HTTP 402 and payment requirements (price, network, payTo address)
+3. **Sign** — Client asks the wallet to sign a Soroban auth entry (USDC SAC transfer authorization)
+4. **Pay & Send** — Client re-sends the request with the `X-Payment` header
+5. **Verify** — Server forwards the payment to the OZ Facilitator for verification
+6. **Settled** — Facilitator settles the USDC transfer on-chain and confirms to the server
+7. **200 OK** — Server returns the protected resource (dancing doge GIF + confetti)
 
 ## Project structure
 
 ```
 app/
   api/
-    content/route.ts           ← Paid endpoint ($0.001 USDC)
+    content/route.ts             ← Paid endpoint ($0.001 USDC)
   components/
-    ui/                        ← Design system primitives
-      Button.tsx                   Variants: primary, secondary, accent, ghost
-      Card.tsx                     Variants: default, success, error, pending
-      StatusDot.tsx                Color indicators (green, red, indigo, etc.)
-    flow/                      ← Protocol flow visualization
-      ProtocolFlowDiagram.tsx      Horizontal 6-step flow with detail panel
-      FlowNode.tsx                 Individual step node (clickable, color-coded)
-      FlowConnector.tsx            Animated connector between nodes
-      FlowDetailPanel.tsx          Expandable request/response detail
-      flow-config.ts               Step definitions (labels, actors)
-    WalletBar.tsx              ← Wallet connect/disconnect + balance
-    PaymentActions.tsx         ← Payment trigger button
-    SecretReveal.tsx           ← Paid content display (doge + confetti)
-    ProtocolDemo.tsx           ← Orchestrator composing the above
+    ui/                          ← Design system primitives
+      Button.tsx                     Variants: primary, secondary, accent, ghost
+      Card.tsx                       Variants: default, success, error, pending
+      StatusDot.tsx                  Color indicators (green, red, indigo, etc.)
+    flow/                        ← Sequence diagram visualization
+      ProtocolFlowDiagram.tsx        7-step sequence diagram with actor swimlanes
+      ActorColumn.tsx                Actor header (Client, Server, Wallet, Facilitator)
+      SequenceRow.tsx                Step row with directional arrow between actors
+      FlowDetailPanel.tsx            Request/response detail panel below diagram
+      flow-config.ts                 Step definitions, actor metadata, flow config
+      index.ts                       Barrel export
+    WalletBar.tsx                ← Wallet connect/disconnect + USDC balance
+    PaymentActions.tsx           ← Payment trigger button
+    SecretReveal.tsx             ← Paid content display (doge + confetti modal)
+    ProtocolDemo.tsx             ← Orchestrator composing the above
   hooks/
-    useWallet.ts               ← Wallet connection via StellarWalletsKit
-    useX402Payment.ts          ← Full x402 6-step payment flow
-    useUsdcBalance.ts          ← USDC balance query (Horizon API)
+    useWallet.ts                 ← Wallet connection via StellarWalletsKit
+    useX402Payment.ts            ← Full x402 payment flow orchestration
+    useUsdcBalance.ts            ← USDC balance query (Horizon API)
+    index.ts                     ← Barrel export
   types/
-    x402.ts                    ← Shared TypeScript interfaces (StepData, FlowStepConfig)
+    x402.ts                      ← Shared interfaces (StepData, FlowStepConfig, Actor)
 
 lib/
-  stellar/                     ← Stellar blockchain layer
-    network.ts                     Network constant + passphrase helper
-    wallet-signer.ts               createWalletSigner() — bridges wallet ↔ x402
-    index.ts                       Barrel export
-  x402/                        ← x402 protocol layer
-    adapter.ts                     NextRequestAdapter (Web API Request → HTTPAdapter)
-    config.ts                      Route pricing, facilitator config, env vars
-    server.ts                      withPayment() wrapper for Route Handlers
+  stellar/                       ← Stellar blockchain layer
+    network.ts                       Network constant + passphrase helper
+    wallet-signer.ts                 createWalletSigner() — bridges wallet ↔ x402
+    index.ts                         Barrel export
+  x402/                          ← x402 protocol layer
+    adapter.ts                       NextRequestAdapter (Web API Request → HTTPAdapter)
+    config.ts                        Route pricing, facilitator config, env vars
+    server.ts                        withPayment() wrapper for Route Handlers
 ```
 
 ### Layer responsibilities
@@ -73,7 +78,7 @@ lib/
 |---|---|---|
 | **UI primitives** | Reusable styled components with variant props | `app/components/ui/` |
 | **Feature components** | Compose UI primitives into domain-specific UI | `app/components/` |
-| **Flow visualization** | Interactive 6-step protocol flow diagram | `app/components/flow/` |
+| **Flow visualization** | Interactive 7-step sequence diagram with actor swimlanes | `app/components/flow/` |
 | **Hooks** | React state + side effects for wallet and payments | `app/hooks/` |
 | **Types** | Shared TypeScript interfaces across layers | `app/types/` |
 | **Stellar** | Network config, wallet signer factory | `lib/stellar/` |
@@ -139,4 +144,5 @@ The `createWalletSigner(address)` factory creates a `ClientStellarSigner` that d
 - **@x402/core** + **@x402/stellar** — x402 protocol client and server
 - **@creit.tech/stellar-wallets-kit** — Multi-wallet support (Freighter, Hana)
 - **@stellar/stellar-sdk** — Stellar types and utilities
+- **react-confetti-explosion** — Celebratory confetti on payment success
 - **OZ Facilitator** — Payment verification and on-chain settlement

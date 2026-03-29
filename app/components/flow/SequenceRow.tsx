@@ -33,30 +33,25 @@ export function SequenceRow({
   // Arrow color based on state
   let arrowColor = "bg-gray-200";
   let labelClasses = "bg-gray-100 text-gray-400 border-gray-200";
-  let dotColor = "bg-gray-300";
   let arrowAnimClass = "";
 
   if (isSelected && isCompleted) {
     arrowColor = "bg-black";
     labelClasses = "bg-black text-white border-black shadow-sm";
-    dotColor = "bg-black";
   } else if (isActive) {
     arrowColor = "bg-[#D4A017]";
     labelClasses = "bg-white text-gray-700 border-[#D4A017]";
-    dotColor = "bg-[#D4A017]";
     arrowAnimClass = "flow-node-active";
   } else if (isError) {
     arrowColor = "bg-red-400";
     labelClasses = "bg-red-50 text-red-700 border-red-300";
-    dotColor = "bg-red-400";
   } else if (isCompleted) {
     arrowColor = "bg-green-400";
     labelClasses = "bg-white text-black border-green-300";
-    dotColor = "bg-green-400";
     arrowAnimClass = "flow-arrow-animate";
   }
 
-  // Arrowhead direction
+  // Arrowhead color
   const arrowHeadBorder = isSelected && isCompleted
     ? "border-black"
     : isActive
@@ -72,29 +67,16 @@ export function SequenceRow({
       className={`relative grid grid-cols-4 ${isCompleted ? "cursor-pointer" : ""}`}
       onClick={isCompleted ? onSelect : undefined}
     >
-      {/* Lifeline segments + connection dots */}
-      {ACTORS.map((actor, i) => (
-        <div key={actor} className="flex flex-col items-center">
-          {/* Top lifeline segment */}
-          <div className={`w-[2px] h-5 ${
-            stepData ? "bg-gray-300" : "bg-gray-200"
-          } ${i === fromIdx || i === toIdx ? "" : "opacity-50"}`} />
-
-          {/* Connection dot (only for from/to actors) */}
-          {(i === fromIdx || i === toIdx) ? (
-            <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${dotColor} transition-colors duration-300`} />
-          ) : (
-            <div className="w-2.5 h-2.5 shrink-0" />
-          )}
-
-          {/* Bottom lifeline segment */}
-          {!isLast && (
-            <div className={`w-[2px] h-5 ${
-              stepData ? "bg-gray-300" : "bg-gray-200"
-            } ${i === fromIdx || i === toIdx ? "" : "opacity-50"}`} />
-          )}
-        </div>
-      ))}
+      {/* Lifeline segments — continuous lines, no dots */}
+      {ACTORS.map((actor, i) => {
+        const isInvolved = i === fromIdx || i === toIdx;
+        const lifelineColor = stepData ? "bg-gray-300" : "bg-gray-200";
+        return (
+          <div key={actor} className="flex flex-col items-center">
+            <div className={`w-[2px] min-h-[36px] ${lifelineColor} ${isInvolved ? "" : "opacity-40"}`} />
+          </div>
+        );
+      })}
 
       {/* Arrow line + label overlay */}
       <div
@@ -113,9 +95,7 @@ export function SequenceRow({
 
           {/* Arrowhead at the "to" end */}
           <div
-            className={`absolute ${
-              goesRight ? "right-0" : "left-0"
-            }`}
+            className={`absolute ${goesRight ? "right-0" : "left-0"}`}
           >
             <div
               className={`w-0 h-0 ${

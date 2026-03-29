@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useWallet, useX402Payment, useUsdcBalance } from "../hooks";
 import { WalletBar } from "./WalletBar";
+import { ServerBalance } from "./ServerBalance";
 import { PaymentActions } from "./PaymentActions";
 import { ProtocolFlowDiagram } from "./flow";
 import { SecretReveal } from "./SecretReveal";
@@ -14,12 +15,14 @@ export function ProtocolDemo() {
     kitReady: true,
   });
   const { balance, refetch } = useUsdcBalance(address);
+  const [serverRefetchKey, setServerRefetchKey] = useState(0);
 
-  // Refetch balance when a payment flow finishes
+  // Refetch balances when a payment flow finishes
   const prevLoading = useRef(false);
   useEffect(() => {
     if (prevLoading.current && !loading) {
       refetch();
+      setServerRefetchKey((k) => k + 1);
     }
     prevLoading.current = loading;
   }, [loading, refetch]);
@@ -36,6 +39,8 @@ export function ProtocolDemo() {
         onConnect={connect}
         onDisconnect={disconnect}
       />
+
+      <ServerBalance refetchKey={serverRefetchKey} />
 
       <PaymentActions
         onReveal={() => runFlow("/api/content")}
