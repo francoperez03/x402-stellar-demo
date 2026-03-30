@@ -1,6 +1,6 @@
 import type { Actor, FlowStepConfig } from "../../types/x402";
 
-export const ACTORS: readonly Actor[] = ["client", "server", "wallet", "facilitator"];
+export const ACTORS: readonly Actor[] = ["wallet", "client", "server", "facilitator"];
 
 export const ACTOR_META: Record<Actor, { label: string; letter: string; color: string }> = {
   client:      { label: "Client",      letter: "C", color: "bg-blue-100 text-blue-700 border-blue-200" },
