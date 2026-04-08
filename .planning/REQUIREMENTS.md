@@ -21,18 +21,18 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Commands
 
-- [ ] **CMD-01**: `/x402:init` bootstraps x402 in any supported framework (installs deps, creates env template, scaffolds route config)
+- [x] **CMD-01**: `/x402:init` bootstraps x402 in any supported framework (installs deps, creates env template, scaffolds route config)
 - [x] **CMD-02**: `/x402:add-paywall` wraps a specified endpoint with payment middleware, idempotently
 - [x] **CMD-03**: `/x402:debug` diagnoses payment flow issues across the 402 lifecycle (headers, facilitator, wallet, network)
 - [x] **CMD-04**: `/x402:explain` generates contextual explanation of how x402 is wired in the current codebase
 
 ### Framework Support
 
-- [ ] **FW-01**: Automatic framework detection from `package.json` (Next.js, Express, Fastify, Hono)
-- [ ] **FW-02**: Next.js App Router adapter for `withPayment` wrapping of route handlers
-- [ ] **FW-03**: Express middleware adapter for x402 payment protection
-- [ ] **FW-04**: Fastify plugin adapter for x402 payment protection
-- [ ] **FW-05**: Hono middleware adapter for x402 payment protection
+- [x] **FW-01**: Automatic framework detection from `package.json` (Next.js, Express, Fastify, Hono)
+- [x] **FW-02**: Next.js App Router adapter for `withPayment` wrapping of route handlers
+- [x] **FW-03**: Express middleware adapter for x402 payment protection
+- [x] **FW-04**: Fastify plugin adapter for x402 payment protection
+- [x] **FW-05**: Hono middleware adapter for x402 payment protection
 
 ### Distribution
 
@@ -44,7 +44,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **QUAL-01**: All code modifications are idempotent (no duplicate wrapping, imports, or config)
 - [x] **QUAL-02**: Clear error messages with actionable fix suggestions for common x402 failures
-- [ ] **QUAL-03**: Environment variable guidance (`.env.example` generation, validation before operations)
+- [x] **QUAL-03**: Environment variable guidance (`.env.example` generation, validation before operations)
 
 ## v2 Requirements
 
@@ -93,21 +93,21 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PKG-01 | Phase 2 | Complete |
 | PKG-02 | Phase 2 | Complete |
 | PKG-03 | Phase 2 | Complete |
-| CMD-01 | Phase 3 | Pending |
+| CMD-01 | Phase 3 | Complete |
 | CMD-02 | Phase 3 | Complete |
 | CMD-03 | Phase 3 | Complete |
 | CMD-04 | Phase 3 | Complete |
-| FW-01 | Phase 3 | Pending |
-| FW-02 | Phase 3 | Pending |
-| FW-03 | Phase 3 | Pending |
-| FW-04 | Phase 3 | Pending |
-| FW-05 | Phase 3 | Pending |
+| FW-01 | Phase 3 | Complete |
+| FW-02 | Phase 3 | Complete |
+| FW-03 | Phase 3 | Complete |
+| FW-04 | Phase 3 | Complete |
+| FW-05 | Phase 3 | Complete |
 | DIST-01 | Phase 4 | Pending |
 | DIST-02 | Phase 4 | Pending |
 | DIST-03 | Phase 4 | Pending |
 | QUAL-01 | Phase 3 | Complete |
 | QUAL-02 | Phase 3 | Complete |
-| QUAL-03 | Phase 3 | Pending |
+| QUAL-03 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 21 total
