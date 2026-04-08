@@ -2,13 +2,20 @@
 name: x402-stellar
 description: >
   Build pay-per-request APIs on Stellar using x402 protocol — HTTP 402 micropayments
-  with USDC. Use when "x402, micropayment, paywall, pay per request, 402 payment,
+  with USDC. Activates on /x402:init, /x402:add-paywall, /x402:explain, /x402:debug
+  commands and when "x402, micropayment, paywall, pay per request, 402 payment,
   USDC API, stellar payments, agent economy, monetize API, pay-per-use" mentioned.
 version: 1.0.0
 author: franco-stellar
 mcp-servers: []
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 tags: [stellar, x402, payments, web3, api, micropayments]
+triggers:
+  - /x402:init
+  - /x402:add-paywall
+  - /x402:explain
+  - /x402:debug
+  - x402
 ---
 
 # x402-stellar
