@@ -23,8 +23,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **CMD-01**: `/x402:init` bootstraps x402 in any supported framework (installs deps, creates env template, scaffolds route config)
 - [x] **CMD-02**: `/x402:add-paywall` wraps a specified endpoint with payment middleware, idempotently
-- [ ] **CMD-03**: `/x402:debug` diagnoses payment flow issues across the 402 lifecycle (headers, facilitator, wallet, network)
-- [ ] **CMD-04**: `/x402:explain` generates contextual explanation of how x402 is wired in the current codebase
+- [x] **CMD-03**: `/x402:debug` diagnoses payment flow issues across the 402 lifecycle (headers, facilitator, wallet, network)
+- [x] **CMD-04**: `/x402:explain` generates contextual explanation of how x402 is wired in the current codebase
 
 ### Framework Support
 
@@ -43,7 +43,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Quality
 
 - [x] **QUAL-01**: All code modifications are idempotent (no duplicate wrapping, imports, or config)
-- [ ] **QUAL-02**: Clear error messages with actionable fix suggestions for common x402 failures
+- [x] **QUAL-02**: Clear error messages with actionable fix suggestions for common x402 failures
 - [ ] **QUAL-03**: Environment variable guidance (`.env.example` generation, validation before operations)
 
 ## v2 Requirements
@@ -95,8 +95,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PKG-03 | Phase 2 | Complete |
 | CMD-01 | Phase 3 | Pending |
 | CMD-02 | Phase 3 | Complete |
-| CMD-03 | Phase 3 | Pending |
-| CMD-04 | Phase 3 | Pending |
+| CMD-03 | Phase 3 | Complete |
+| CMD-04 | Phase 3 | Complete |
 | FW-01 | Phase 3 | Pending |
 | FW-02 | Phase 3 | Pending |
 | FW-03 | Phase 3 | Pending |
@@ -106,7 +106,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DIST-02 | Phase 4 | Pending |
 | DIST-03 | Phase 4 | Pending |
 | QUAL-01 | Phase 3 | Complete |
-| QUAL-02 | Phase 3 | Pending |
+| QUAL-02 | Phase 3 | Complete |
 | QUAL-03 | Phase 3 | Pending |
 
 **Coverage:**
