@@ -22,17 +22,17 @@ To target a specific workspace:
 ```bash
 npm run dev --workspace x402-demo
 npm run build --workspace x402-demo
-npm run build --workspace engineer
+npm run build --workspace @x402/engineer
 ```
 
 ## Skills
 
-This project includes two skills in `.claude/skills/`:
+This project includes two skills in `packages/engineer/skills/`:
 - **x402-stellar** -- x402 protocol patterns, API reference, setup guides
 - **stellar-dev** -- Stellar/Soroban development: SDK usage, assets, contracts
 
 ## Workspaces
 
 - **x402-demo**: See `apps/x402-demo/CLAUDE.md` for demo-specific context
-- **engineer**: Minimal type-only package (Phase 2 adds CLI, skills, AGENT.md)
-- **tsconfig**: Config-only package, no code
+- **@x402/engineer**: CLI + skills package (`npx @x402/engineer install` copies skills to ~/.claude/skills/)
+- **@x402/tsconfig**: Config-only package, no code
