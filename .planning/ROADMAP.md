@@ -14,8 +14,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Monorepo Foundation** - Turborepo monorepo with the existing demo migrated and fully functional (completed 2026-04-08)
 - [x] **Phase 2: Package Structure** - `@x402/engineer` package skeleton with migrated skills and agent definition (completed 2026-04-08)
-- [ ] **Phase 3: Commands and Framework Adapters** - All four slash commands with adapters for Next.js, Express, Fastify, and Hono
-- [ ] **Phase 4: Distribution** - CLI installer, idempotent install/uninstall, npm publish readiness
+- [x] **Phase 3: Commands and Framework Adapters** - All four slash commands with adapters for Next.js, Express, Fastify, and Hono (completed 2026-04-08)
+- [x] **Phase 4: Distribution** - CLI installer, idempotent install/uninstall, npm publish readiness (completed 2026-04-08)
 
 ## Phase Details
 
@@ -63,10 +63,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 03-01-PLAN.md -- /x402:init command with framework scaffolding templates
-- [ ] 03-02-PLAN.md -- /x402:add-paywall command with wrapping patterns
-- [ ] 03-03-PLAN.md -- /x402:debug and /x402:explain commands
-- [ ] 03-04-PLAN.md -- Wire commands into CLI and AGENT.md
+- [x] 03-01-PLAN.md -- /x402:init command with framework scaffolding templates
+- [x] 03-02-PLAN.md -- /x402:add-paywall command with wrapping patterns
+- [x] 03-03-PLAN.md -- /x402:debug and /x402:explain commands
+- [x] 03-04-PLAN.md -- Wire commands into CLI and AGENT.md
 
 ### Phase 4: Distribution
 **Goal**: Developers can install and uninstall the skill pack via npx with a clean, idempotent experience
@@ -79,7 +79,9 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 04-01: TBD
+- [x] 04-01: Test infrastructure and foundational modules (paths.ts, manifest.ts)
+- [x] 04-02: Install, uninstall, and CLI entry point
+- [x] 04-03: tsup build config, package.json hardening, README
 
 ## Progress
 
@@ -88,7 +90,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Monorepo Foundation | 3/3 | Complete   | 2026-04-08 |
-| 2. Package Structure | 1/2 | In progress | - |
-| 3. Commands and Framework Adapters | 0/4 | Not started | - |
-| 4. Distribution | 0/? | Not started | - |
+| 1. Monorepo Foundation | 3/3 | Complete | 2026-04-08 |
+| 2. Package Structure | 2/2 | Complete | 2026-04-08 |
+| 3. Commands and Framework Adapters | 4/4 | Complete | 2026-04-08 |
+| 4. Distribution | 3/3 | Complete | 2026-04-08 |
