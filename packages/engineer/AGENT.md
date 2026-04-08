@@ -8,15 +8,55 @@ I help you add pay-per-request billing to API endpoints using the x402 protocol 
 
 ## Commands
 
-The four commands follow a natural developer workflow:
+### `/x402:init` -- Bootstrap x402
 
-1. **`/x402:init`** -- Project setup: scaffold config, install dependencies, configure Stellar wallet
-2. **`/x402:add-paywall`** -- Add a payment gate to an API route ($0.001 USDC per request)
-3. **`/x402:explain`** -- Understand what happened: trace a request through the protocol flow
-4. **`/x402:debug`** -- Fix issues: diagnose payment failures, wallet problems, facilitator errors
+Sets up x402 payment protection in your project. Detects your framework (Next.js, Express, Fastify, or Hono), installs the correct x402 packages, and scaffolds configuration files.
 
-**Recommended progression:** init -> add-paywall -> explain -> debug
-Start with init for new projects, or add-paywall if your project is already set up.
+**Creates:**
+- Route config file (`lib/x402/config.ts`) with `routesConfig` and env var exports
+- Server/middleware file (`lib/x402/server.ts`) with framework-specific adapter
+- `.env.example` with required variables (SERVER_STELLAR_ADDRESS, FACILITATOR_URL, FACILITATOR_API_KEY)
+- For Fastify: custom `FastifyAdapter` (because `@x402/fastify` is not published on npm)
+
+**Idempotent:** Detects existing setup and skips what already exists.
+
+### `/x402:add-paywall` -- Protect an endpoint
+
+Wraps an API endpoint with x402 payment middleware. Discovers endpoints in your project, shows their protection status, and lets you choose which to protect.
+
+**How it works:**
+- Next.js: wraps the route handler inline with `withPayment()` or `withX402()`
+- Express/Fastify/Hono: adds the route to `routesConfig` (middleware handles the rest)
+
+**Idempotent:** Detects `// x402: payment-protected endpoint` markers and routesConfig entries. Already-protected endpoints are skipped.
+
+### `/x402:debug` -- Diagnose issues
+
+Runs a comprehensive static analysis checklist covering:
+1. Environment variables (set, format-valid)
+2. Dependencies (installed, correct versions)
+3. Code structure (config file, server file, import paths, price format)
+4. Framework detection (correct adapter for detected framework)
+
+**Output:** `[PASS]` / `[FAIL]` / `[WARN]` for each check with actionable fix instructions.
+
+### `/x402:explain` -- Understand your setup
+
+Generates a live overview of how x402 is wired in your project:
+- Protected endpoints table (method, path, price, asset, network)
+- 6-step payment flow diagram
+- Framework and adapter details
+- Configuration file locations
+
+**Dynamic:** Reads your codebase fresh on every invocation. Always reflects current state.
+
+### Recommended progression
+
+```
+/x402:init -> /x402:add-paywall -> /x402:explain -> /x402:debug
+```
+
+Start with `init` for new projects, or `add-paywall` if already set up.
 
 ## Protocol Flow
 
@@ -49,7 +89,14 @@ Client Request -> 402 Response -> Sign Payment -> Retry with X-Payment -> Verify
 
 ## Skills
 
-This agent ships with two skill packs:
+This agent ships with six skill packs:
 
+**Reference skills:**
 - **x402-stellar** -- Protocol patterns, API reference, setup guides for Stellar micropayments
 - **stellar-dev** -- Stellar/Soroban development: SDK usage, assets, contracts, testing, security
+
+**Command skills:**
+- **x402-init** -- `/x402:init` slash command
+- **x402-add-paywall** -- `/x402:add-paywall` slash command
+- **x402-debug** -- `/x402:debug` slash command
+- **x402-explain** -- `/x402:explain` slash command
