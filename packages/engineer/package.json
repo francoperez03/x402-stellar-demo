@@ -1,11 +1,10 @@
 {
   "name": "@x402/engineer",
   "version": "0.1.0",
-  "description": "Claude Code skill pack for x402 micropayments on Stellar",
+  "description": "Claude Code skill pack for adding x402 micropayments to any API endpoint",
+  "license": "MIT",
   "type": "module",
-  "bin": {
-    "x402-engineer": "./dist/cli.js"
-  },
+  "bin": "dist/cli.cjs",
   "exports": {
     ".": "./src/index.ts",
     "./types": "./src/types/index.ts"
@@ -14,14 +13,33 @@
   "files": [
     "dist/",
     "skills/",
-    "AGENT.md"
+    "commands/",
+    "AGENT.md",
+    "README.md"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "build": "tsup",
-    "dev": "tsx src/cli.ts"
+    "dev": "tsx src/cli.ts",
+    "prepublishOnly": "npm run build && npm run lint"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "x402",
+    "micropayments",
+    "stellar",
+    "claude-code",
+    "skill-pack",
+    "api-monetization"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/x402/engineer",
+    "directory": "packages/engineer"
   },
   "devDependencies": {
     "@x402/tsconfig": "*",
