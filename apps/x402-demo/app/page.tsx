@@ -1,3 +1,4 @@
+import { InstallSection } from "./components/InstallSection";
 import { ProtocolDemo } from "./components/ProtocolDemo";
 
 export default function Home() {
@@ -41,6 +42,9 @@ export default function Home() {
       <main className="px-8 py-10">
         <ProtocolDemo />
       </main>
+
+      {/* Install / Quick Start */}
+      <InstallSection />
 
       {/* Footer */}
       <footer className="border-t border-gray-200 py-6 px-8 text-center space-y-3">
