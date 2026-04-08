@@ -9,7 +9,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 
 # /x402:init
 
-> Bootstrap x402 payment protection in your project. I'll detect your framework, install the right packages, and scaffold all config files.
+> Bootstrap x402 payment protection in your project. Works with existing projects (brownfield) or creates a new project from scratch (greenfield). I'll detect your framework, install the right packages, and scaffold all config files.
 
 ## Important Rules
 
@@ -17,6 +17,64 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 - Server-side `ExactStellarScheme` import path is always `@x402/stellar/exact/server` (NOT `@x402/stellar/exact/client`).
 - All templates are in this skill's `templates/` directory. Read the template file and use its content as the basis for generated code.
 - Adapt import paths if needed based on project structure (e.g., relative paths based on file placement).
+- For Next.js greenfield projects, ALWAYS delegate to create-next-app. Do NOT scaffold Next.js manually.
+- Greenfield templates are in this skill's `templates/greenfield/` directory.
+
+## Step 0 -- Detect Greenfield Project (Conditional)
+
+Before anything else, determine if this is a greenfield (new/empty) project:
+
+1. **Check for package.json:** Use Read to check if `package.json` exists in the current working directory
+2. **If package.json exists:** Check if any supported framework (`next`, `express`, `fastify`, `hono`) appears in `dependencies`. If a framework IS found, this is a brownfield project -- skip to Step 1.
+3. **If no package.json OR no framework in dependencies:** This is a greenfield project. Continue below.
+
+### Greenfield: Verify Empty Directory
+
+Before scaffolding, verify the directory is safe to scaffold into:
+
+1. Use Bash to list directory contents: `ls -A`
+2. **Allowed trivial files:** `.git`, `.gitignore`, `CLAUDE.md`, `.claude/`, `README.md`, `.planning/`
+3. If the directory contains files OTHER than the trivial list above, warn the user:
+   `"Directory is not empty. Found: {non-trivial files}. Greenfield scaffolding expects an empty directory. Continue anyway? (The existing files will be preserved, but conflicts may occur.)"`
+   Wait for user confirmation before proceeding. If the user says no, STOP.
+
+### Greenfield: Select Framework
+
+1. **If `$ARGUMENTS` provides a framework** (e.g., `/x402:init express`), use that framework directly. Valid values: `nextjs`, `next`, `express`, `fastify`, `hono`. Normalize `nextjs`/`next` to Next.js.
+2. **If no argument provided**, ask the user:
+   ```
+   No framework detected. Which framework would you like to use?
+
+   1. Express (default -- simplest for API-only)
+   2. Fastify
+   3. Hono
+   4. Next.js (full-stack with App Router)
+
+   Enter choice (1-4) or framework name:
+   ```
+   If the user just presses enter or says "default", use Express.
+
+### Greenfield: Scaffold Project
+
+**For Next.js:**
+
+1. Output: `"Scaffolding Next.js project with create-next-app..."`
+2. Run via Bash: `npx create-next-app@latest . --typescript --app --yes`
+3. Wait for completion. If it fails (e.g., directory not empty), report the error and STOP.
+4. Output: `"Next.js project created. Continuing with x402 setup..."`
+5. Skip to Step 1 (the brownfield flow handles everything from here).
+
+**For Express / Fastify / Hono:**
+
+1. Output: `"Scaffolding {Framework} project..."`
+2. Read `templates/greenfield/{framework}/package.json.md` -- extract JSON from code block, write to `./package.json`
+3. Read `templates/greenfield/{framework}/tsconfig.json.md` -- extract JSON from code block, write to `./tsconfig.json`
+4. Create `src/` directory via Bash: `mkdir -p src`
+5. Read `templates/greenfield/{framework}/server.ts.md` -- extract TypeScript from code block, write to `./src/server.ts`
+6. Run via Bash: `npm install`
+7. Output: `"Project scaffolded. Created 3 files: package.json, tsconfig.json, src/server.ts"`
+8. Output: `"Continuing with x402 setup..."`
+9. Continue to Step 1 (the existing brownfield flow picks up from here -- it will detect the framework from the newly created package.json).
 
 ## Step 1 -- Check for Existing x402 Setup (Idempotency)
 
@@ -50,7 +108,7 @@ Report which pieces are already present. Skip those. Only create the missing pie
 
 **Edge cases:**
 - If `@nestjs/core` is found in dependencies, warn: `"NestJS detected, using underlying Express/Fastify adapter"` and detect which underlying framework NestJS uses (check for `@nestjs/platform-express` or `@nestjs/platform-fastify`)
-- If no supported framework is detected, output: `"Could not detect framework from package.json. Supported: Next.js, Express, Fastify, Hono."` and STOP
+- If no supported framework is detected AND Step 0 was skipped (package.json exists but has no framework): output `"Could not detect framework from package.json. Supported: Next.js, Express, Fastify, Hono."` and STOP
 
 ## Step 3 -- Detect Project Structure
 
