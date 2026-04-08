@@ -1,0 +1,14 @@
+{
+  "name": "@x402/engineer",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/types/index.ts"
+  },
+  "types": "./src/index.ts",
+  "devDependencies": {
+    "@x402/tsconfig": "*",
+    "typescript": "^5"
+  }
+}
