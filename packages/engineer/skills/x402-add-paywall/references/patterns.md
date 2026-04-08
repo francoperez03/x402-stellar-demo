@@ -12,16 +12,29 @@ Next.js route handlers must be wrapped individually because there is no global m
 
 **Using @x402/next (official):**
 
+`withX402` takes three arguments: `(handler, routeConfig, resourceServer)` where `routeConfig` is a **single route config object** (NOT the full `RoutesConfig` map).
+
 ```typescript
-import { withX402 } from "../lib/x402/server";
-import { routesConfig, resourceServer } from "../lib/x402/server";
+import { withX402, resourceServer } from "../lib/x402/server";
+import { PRICE, NETWORK, SERVER_ADDRESS } from "../lib/x402/config";
 
 // x402: payment-protected endpoint
 export const GET = withX402(
   async (req: Request) => {
     return Response.json({ data: "protected content" });
   },
-  routesConfig,
+  {
+    accepts: [
+      {
+        scheme: "exact",
+        price: PRICE,
+        network: NETWORK,
+        payTo: SERVER_ADDRESS,
+      },
+    ],
+    description: "Description of endpoint",
+    mimeType: "application/json",
+  },
   resourceServer,
 );
 ```

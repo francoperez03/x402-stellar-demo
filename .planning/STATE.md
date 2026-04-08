@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-04-07)
 Phase: 4 of 4 (Distribution)
 Plan: 3 of 3 in current phase (COMPLETE)
 Status: Complete
-Last activity: 2026-04-08 -- Completed 04-03 npm publish readiness (tsup build, package.json, README, human-verified)
+Last activity: 2026-04-08 - Completed quick task 260408-rt3: Add install/quick-start section to x402-demo site
 
 Progress: [██████████] 100%
 
@@ -95,6 +95,12 @@ None yet.
 
 - [Research]: Fastify and Hono x402 adapter patterns have LOW confidence -- needs phase-specific research during Phase 3
 - [Research]: Claude Code plugin marketplace npm source registration flow needs validation -- may affect Phase 4 distribution approach
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260408-rt3 | Add install/quick-start section to x402-demo site with npx install command and usage instructions | 2026-04-08 | f6125f2 | [260408-rt3-add-install-quick-start-section-to-x402-](./quick/260408-rt3-add-install-quick-start-section-to-x402-/) |
 
 ## Session Continuity
 

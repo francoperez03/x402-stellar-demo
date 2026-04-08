@@ -137,21 +137,36 @@ Read [references/patterns.md](references/patterns.md) for the framework-specific
 For each selected unprotected endpoint:
 
 1. **Read the route file** -- always read before editing (never assume file state)
-2. **Add import** -- if `withPayment` or `withX402` is not already imported, add the import:
+2. **Add imports** -- if `withX402` and `resourceServer` are not already imported, add:
    ```typescript
-   import { withPayment } from "{relative_path_to_server}";
+   import { withX402, resourceServer } from "{relative_path_to_server}";
+   import { PRICE, NETWORK, SERVER_ADDRESS } from "{relative_path_to_config}";
    ```
-   Use the path to the x402 server file found in Step 1. Preserve existing imports -- do not duplicate.
+   Use the paths to the x402 server and config files found in Step 1. Preserve existing imports -- do not duplicate.
 3. **Add marker comment** -- add `// x402: payment-protected endpoint` above the handler function
-4. **Wrap the handler** -- wrap the handler's body with `withPayment(req, () => { ... original handler ... })`:
+4. **Wrap the handler** -- use `withX402(handler, routeConfig, resourceServer)` where `routeConfig` is a **single route config object** (NOT the full RoutesConfig map):
    ```typescript
    // x402: payment-protected endpoint
-   export async function GET(req: Request) {
-     return withPayment(req, () => {
+   export const GET = withX402(
+     async (req: Request) => {
        // ... original handler body ...
-     });
-   }
+     },
+     {
+       accepts: [
+         {
+           scheme: "exact",
+           price: PRICE,
+           network: NETWORK,
+           payTo: SERVER_ADDRESS,
+         },
+       ],
+       description: "Description of endpoint",
+       mimeType: "application/json",
+     },
+     resourceServer,
+   );
    ```
+   **IMPORTANT:** `withX402` takes a single `RouteConfig` object as its 2nd argument, NOT the full `RoutesConfig` map. Passing the map will cause `Cannot read properties of undefined (reading 'network')` errors.
 5. **Use Edit tool** to apply changes to the route file
 
 ### Express / Fastify / Hono (middleware)

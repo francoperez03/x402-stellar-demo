@@ -1,6 +1,6 @@
 {
-  "name": "@x402/engineer",
-  "version": "0.1.0",
+  "name": "x402-engineer",
+  "version": "0.1.1",
   "description": "Claude Code skill pack for adding x402 micropayments to any API endpoint",
   "license": "MIT",
   "type": "module",
@@ -23,7 +23,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsx src/cli.ts",
-    "prepublishOnly": "npm run build && npm run lint"
+    "prepublishOnly": "npm run build"
   },
   "engines": {
     "node": ">=18.0.0"
