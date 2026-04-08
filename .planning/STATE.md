@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 03-04-PLAN.md (Phase 3 complete)
-last_updated: "2026-04-08T05:36:04.681Z"
-last_activity: 2026-04-08 -- Completed 03-04 CLI and AGENT.md integration
+status: in-progress
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-04-08T05:53:00Z"
+last_activity: 2026-04-08 -- Completed 04-02 install/uninstall and CLI entry point
 progress:
   total_phases: 4
   completed_phases: 3
   total_plans: 12
-  completed_plans: 9
-  percent: 75
+  completed_plans: 11
+  percent: 92
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-07)
 
 **Core value:** Add micropayments to any API endpoint in seconds -- zero x402 protocol knowledge required.
-**Current focus:** Phase 3 complete -- all commands wired into CLI and AGENT.md. Ready for Phase 4.
+**Current focus:** Phase 4 -- Distribution. Install/uninstall CLI modules complete. Ready for build config and npm publish prep.
 
 ## Current Position
 
-Phase: 3 of 4 (Commands and Framework Adapters)
-Plan: 4 of 4 in current phase (COMPLETE)
-Status: Phase 3 Complete
-Last activity: 2026-04-08 -- Completed 03-04 CLI and AGENT.md integration
+Phase: 4 of 4 (Distribution)
+Plan: 2 of 3 in current phase (COMPLETE)
+Status: In Progress
+Last activity: 2026-04-08 -- Completed 04-02 install/uninstall and CLI entry point
 
-Progress: [████████░░] 75%
+Progress: [█████████░] 92%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
+- Total plans completed: 11
 - Average duration: 3min
-- Total execution time: 0.41 hours
+- Total execution time: 0.49 hours
 
 **By Phase:**
 
@@ -46,15 +46,16 @@ Progress: [████████░░] 75%
 | 1. Monorepo Foundation | 3/3 | 10min | 3min |
 | 2. Package Structure | 2/2 | 7min | 4min |
 | 3. Commands and Adapters | 4/4 | 11min | 3min |
+| 4. Distribution | 2/3 | 5min | 3min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02(3min), 03-01(3min), 03-02(3min), 03-03(3min), 03-04(2min)
+- Last 5 plans: 03-02(3min), 03-03(3min), 03-04(2min), 04-01(3min), 04-02(2min)
 - Trend: Steady
 
 *Updated after each plan completion*
+| Phase 04 P02 | 2min | 2 tasks | 3 files |
+| Phase 04 P01 | 3min | 2 tasks | 10 files |
 | Phase 03 P04 | 2min | 2 tasks | 2 files |
-| Phase 03 P03 | 3min | 2 tasks | 3 files |
-| Phase 03 P01 | 4min | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,10 @@ Recent decisions affecting current work:
 - [Phase 03]: [03-01]: Templates stored as .ts.md files (markdown with TypeScript code blocks) for Claude to read and extract
 - [Phase 03]: [03-04]: CLI success message lists available slash commands for discoverability
 - [Phase 03]: [03-04]: Skills categorized as Reference (2) and Command (4) in AGENT.md
+- [Phase 04]: [04-01]: PathsConfig interface enables dependency injection -- all modules accept optional paths parameter for test isolation
+- [Phase 04]: [04-01]: Test helpers create isolated temp dirs for both package source and target, never touching real ~/.claude/
+- [Phase 04]: [04-02]: install.ts guards commands copy with fs.existsSync -- gracefully handles missing commands directory
+- [Phase 04]: [04-02]: cli.ts replaced Phase 2 inline implementation with minimal dispatcher importing from dedicated modules
 
 ### Pending Todos
 
@@ -93,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-08T05:34:14Z
-Stopped at: Completed 03-04-PLAN.md (Phase 3 complete)
+Last session: 2026-04-08T05:50:51Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None

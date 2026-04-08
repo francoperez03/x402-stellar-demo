@@ -36,9 +36,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Distribution
 
-- [ ] **DIST-01**: CLI entry point (`npx @x402/engineer install`) that registers skills into `~/.claude/`
-- [ ] **DIST-02**: Idempotent installer (running twice does not duplicate or corrupt skills)
-- [ ] **DIST-03**: Uninstall command (`npx @x402/engineer uninstall`) that cleanly removes skills
+- [x] **DIST-01**: CLI entry point (`npx @x402/engineer install`) that registers skills into `~/.claude/`
+- [x] **DIST-02**: Idempotent installer (running twice does not duplicate or corrupt skills)
+- [x] **DIST-03**: Uninstall command (`npx @x402/engineer uninstall`) that cleanly removes skills
 
 ### Quality
 
@@ -102,9 +102,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FW-03 | Phase 3 | Complete |
 | FW-04 | Phase 3 | Complete |
 | FW-05 | Phase 3 | Complete |
-| DIST-01 | Phase 4 | Pending |
-| DIST-02 | Phase 4 | Pending |
-| DIST-03 | Phase 4 | Pending |
+| DIST-01 | Phase 4 | Complete |
+| DIST-02 | Phase 4 | Complete |
+| DIST-03 | Phase 4 | Complete |
 | QUAL-01 | Phase 3 | Complete |
 | QUAL-02 | Phase 3 | Complete |
 | QUAL-03 | Phase 3 | Complete |
