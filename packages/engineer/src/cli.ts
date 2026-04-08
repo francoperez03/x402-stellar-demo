@@ -6,7 +6,14 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SKILLS_SOURCE = resolve(__dirname, "..", "skills");
 const CLAUDE_SKILLS_DIR = join(homedir(), ".claude", "skills");
-const SKILL_NAMES = ["x402-stellar", "stellar-dev"];
+const SKILL_NAMES = [
+  "x402-stellar",
+  "stellar-dev",
+  "x402-init",
+  "x402-add-paywall",
+  "x402-debug",
+  "x402-explain",
+];
 
 function install(): void {
   console.log("Installing x402 engineer skills...\n");
@@ -21,6 +28,8 @@ function install(): void {
     mkdirSync(CLAUDE_SKILLS_DIR, { recursive: true });
   }
 
+  let installed = 0;
+
   for (const skill of SKILL_NAMES) {
     const src = join(SKILLS_SOURCE, skill);
     const dest = join(CLAUDE_SKILLS_DIR, skill);
@@ -31,11 +40,12 @@ function install(): void {
     }
 
     cpSync(src, dest, { recursive: true, force: true });
+    installed++;
     console.log(`  Installed: ${skill}`);
   }
 
-  console.log("\nx402 engineer skills installed to ~/.claude/skills/");
-  console.log("Skills are now available in Claude Code.\n");
+  console.log(`\n${installed} x402 engineer skill(s) installed to ~/.claude/skills/`);
+  console.log("Commands available: /x402:init, /x402:add-paywall, /x402:debug, /x402:explain\n");
 }
 
 function uninstall(): void {
