@@ -12,8 +12,8 @@
 /coverage
 
 # next.js
-/.next/
-/out/
+**/.next/
+**/out/
 
 # production
 /build
@@ -36,8 +36,13 @@ yarn-error.log*
 
 # claude tooling
 .claude/
-CLAUDE.md
+
+# planning
+.planning/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# turborepo
+.turbo
