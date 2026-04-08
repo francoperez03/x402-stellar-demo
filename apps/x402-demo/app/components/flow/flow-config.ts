@@ -1,4 +1,4 @@
-import type { Actor, FlowStepConfig } from "../../types/x402";
+import type { Actor, FlowStepConfig } from "@x402/engineer";
 
 export const ACTORS: readonly Actor[] = ["wallet", "client", "server", "facilitator"];
 

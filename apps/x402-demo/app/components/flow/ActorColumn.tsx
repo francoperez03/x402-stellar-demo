@@ -1,4 +1,4 @@
-import type { Actor } from "../../types/x402";
+import type { Actor } from "@x402/engineer";
 import { ACTOR_META } from "./flow-config";
 
 interface ActorColumnProps {

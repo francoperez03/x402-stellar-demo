@@ -1,39 +1,38 @@
-# x402-stellar-demo
+# x402-stellar (monorepo)
 
-## Project
+## Structure
 
-Pay-per-request API demo using x402 protocol on Stellar. Next.js 15 + React 19 + Tailwind 4.
-
-## Architecture
+Turborepo monorepo with npm workspaces.
 
 ```
-lib/stellar/         → Stellar blockchain layer (network, wallet signer)
-lib/x402/            → x402 protocol layer (adapter, config, server middleware)
-app/types/           → Shared TypeScript interfaces (StepData, FlowStepConfig)
-app/hooks/           → React hooks (useWallet, useX402Payment, useUsdcBalance)
-app/components/ui/   → Design system primitives (Button, Card, StatusDot)
-app/components/flow/ → Protocol flow visualization (6-step diagram)
-app/components/      → Feature components (WalletBar, PaymentActions, SecretReveal, ProtocolDemo)
-app/api/content/     → Protected API route ($0.001 USDC per request)
+apps/x402-demo/      -> Next.js demo app (x402 payment flow showcase)
+packages/engineer/    -> @x402/engineer package (x402 types, future CLI + skills)
+packages/tsconfig/    -> @x402/tsconfig shared TypeScript configurations
+```
+
+## Commands
+
+```bash
+npm run dev          # Start all dev servers via Turborepo
+npm run build        # Build all workspaces via Turborepo
+npm run lint         # Lint all workspaces via Turborepo
+```
+
+To target a specific workspace:
+```bash
+npm run dev --workspace x402-demo
+npm run build --workspace x402-demo
+npm run build --workspace engineer
 ```
 
 ## Skills
 
 This project includes two skills in `.claude/skills/`:
+- **x402-stellar** -- x402 protocol patterns, API reference, setup guides
+- **stellar-dev** -- Stellar/Soroban development: SDK usage, assets, contracts
 
-- **x402-stellar** — x402 protocol patterns, API reference, setup guides for Stellar micropayments
-- **stellar-dev** — Stellar/Soroban development: SDK usage, assets, contracts, testing, security
+## Workspaces
 
-## Commands
-
-```bash
-npm run dev      # Start dev server
-npm run build    # Production build
-```
-
-## Environment
-
-Requires `.env.local` (see `.env.example` for template):
-- `SERVER_STELLAR_ADDRESS` — Stellar public key that receives payments
-- `FACILITATOR_URL` — OZ Channels facilitator endpoint
-- `FACILITATOR_API_KEY` — API key from OZ Channels dashboard
+- **x402-demo**: See `apps/x402-demo/CLAUDE.md` for demo-specific context
+- **engineer**: Minimal type-only package (Phase 2 adds CLI, skills, AGENT.md)
+- **tsconfig**: Config-only package, no code

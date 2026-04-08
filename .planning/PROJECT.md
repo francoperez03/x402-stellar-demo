@@ -68,7 +68,7 @@ The x402 protocol lifecycle: client requests → server returns 402 with payment
 
 ## Constraints
 
-- **Package manager**: pnpm (Turborepo monorepo)
+- **Package manager**: npm (Turborepo monorepo, npm workspaces)
 - **Monorepo tool**: Turborepo
 - **Package scope**: `@x402` npm org
 - **Existing demo**: Must continue working after monorepo migration
@@ -89,6 +89,7 @@ The x402 protocol lifecycle: client requests → server returns 402 with payment
 | All 4 slash commands in MVP | Core use cases are tightly coupled, shipping partial would feel incomplete | — Pending |
 | 4 frameworks in MVP | Next.js + Express + Fastify + Hono covers vast majority of Node.js APIs | — Pending |
 | Migrate existing skills into package | Existing reference material is high quality, avoids duplication | — Pending |
+| npm over pnpm | User preference; npm workspaces work natively with Turborepo | — Applied |
 
 ---
-*Last updated: 2026-04-07 after initialization*
+*Last updated: 2026-04-07 after roadmap revision (pnpm -> npm)*

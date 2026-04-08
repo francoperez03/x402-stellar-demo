@@ -5,7 +5,7 @@ import { ACTORS, FLOW_STEPS } from "./flow-config";
 import { ActorColumn } from "./ActorColumn";
 import { SequenceRow } from "./SequenceRow";
 import { FlowDetailPanel } from "./FlowDetailPanel";
-import type { StepData } from "../../types/x402";
+import type { StepData } from "@x402/engineer";
 
 interface ProtocolFlowDiagramProps {
   steps: StepData[];

@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { ExactStellarScheme } from "@x402/stellar/exact/client";
 import { x402Client, x402HTTPClient } from "@x402/core/client";
 import { NETWORK, createWalletSigner } from "@/lib/stellar";
-import type { StepData } from "../types/x402";
+import type { StepData } from "@x402/engineer";
 
 interface UseX402PaymentParams {
   address: string | null;

@@ -1,6 +1,6 @@
 "use client";
 
-import type { FlowStepConfig, StepData } from "../../types/x402";
+import type { FlowStepConfig, StepData } from "@x402/engineer";
 import { ACTORS } from "./flow-config";
 
 interface SequenceRowProps {

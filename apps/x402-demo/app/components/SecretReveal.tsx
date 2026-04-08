@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
-import type { StepData } from "../types/x402";
+import type { StepData } from "@x402/engineer";
 
 interface SecretRevealProps {
   steps: StepData[];
