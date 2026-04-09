@@ -54,7 +54,7 @@ If no project exists, scaffold with Express (the only framework with official x4
 ### Step 2 — Install Dependencies
 
 ```bash
-npm install @x402/express @x402/stellar @x402/core @stellar/stellar-sdk dotenv
+npm install @x402/express @x402/stellar @x402/core @stellar/stellar-sdk
 ```
 
 For TypeScript projects, also install:

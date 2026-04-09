@@ -247,6 +247,14 @@ If one or both were skipped:
 `"Created .env.local with partial configuration. Fill in the missing values before testing:"`
 Then list which variables are still empty.
 
+### 7f -- Env Loading Guidance (Brownfield Only)
+
+If this is a brownfield project (Step 0 was skipped because a framework was already in `package.json`), output:
+
+`"Note: Make sure your dev script loads .env.local. For tsx or Node.js 20+, add --env-file=.env.local to your dev command. Example: \"tsx watch --env-file=.env.local src/server.ts\""`
+
+This is advisory only -- do NOT modify the user's `package.json` scripts automatically.
+
 ## Step 8 -- Summary
 
 Count the files created during this run and output:

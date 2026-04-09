@@ -15,7 +15,7 @@ const commands = [
   },
   {
     name: "/x402:add-paywall",
-    description: "Protect any API endpoint with a paywall",
+    description: "Make any API endpoint charge per request",
   },
   {
     name: "/x402:debug",
@@ -44,9 +44,9 @@ const steps = [
   },
   {
     number: 3,
-    title: "Add paywalls",
+    title: "Protect your endpoints",
     description:
-      "Use /x402:add-paywall on any API route. The skill handles middleware wiring, USDC pricing, and Stellar settlement.",
+      "Use /x402:add-paywall to make any API route charge per request. The skill handles middleware, USDC pricing, and Stellar settlement.",
   },
 ];
 

@@ -9,8 +9,6 @@ import express from "express";
 import { paymentMiddleware, x402ResourceServer } from "@x402/express";
 import { ExactStellarScheme } from "@x402/stellar/exact/server";
 import { HTTPFacilitatorClient } from "@x402/core/server";
-import "dotenv/config";
-
 // 1. Create the facilitator client with auth headers
 const facilitatorClient = new HTTPFacilitatorClient({
   url: process.env.FACILITATOR_URL || "https://channels.openzeppelin.com/x402/testnet",
@@ -83,8 +81,6 @@ app.listen(PORT, () => {
 import { createEd25519Signer } from "@x402/stellar";
 import { ExactStellarScheme } from "@x402/stellar/exact/client";
 import { x402Client, x402HTTPClient } from "@x402/core/client";
-import "dotenv/config";
-
 const SERVER_URL = process.env.SERVER_URL || "http://localhost:3000";
 
 // 1. Create the signer from the client's secret key

@@ -1,6 +1,6 @@
 {
   "name": "x402-engineer",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "Claude Code skill pack for adding x402 micropayments to any API endpoint",
   "license": "MIT",
   "type": "module",
@@ -38,7 +38,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/x402/engineer",
+    "url": "https://github.com/francoperez03/x402-stellar-demo",
     "directory": "packages/engineer"
   },
   "devDependencies": {

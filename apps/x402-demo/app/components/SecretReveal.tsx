@@ -37,7 +37,7 @@ export function SecretReveal({ steps }: SecretRevealProps) {
         </div>
 
         <p className="font-headline text-3xl text-black mb-4">
-          Surprise! Doge!
+          That&apos;s x402.
         </p>
 
         {gifUrl && (
@@ -48,15 +48,18 @@ export function SecretReveal({ steps }: SecretRevealProps) {
           />
         )}
 
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-gray-500 mb-1">
           Paid with USDC on Stellar via x402
+        </p>
+        <p className="text-xs text-gray-400 mb-4">
+          $0.001. No API key. No account. Just pay and get.
         </p>
 
         <button
           onClick={() => setDismissed(true)}
           className="w-full py-2.5 rounded-lg bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
         >
-          Close
+          Nice
         </button>
       </div>
     </div>

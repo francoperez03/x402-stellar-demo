@@ -8,7 +8,7 @@ Minimal package.json for a new Hono + TypeScript project.
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --env-file=.env.local src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },

@@ -11,7 +11,7 @@ export function PaymentActions({ onReveal, disabled }: PaymentActionsProps) {
   return (
     <div className="mb-8">
       <Button variant="accent" onClick={onReveal} disabled={disabled}>
-        Reveal Secret — $0.001
+        Pay $0.001 — Get the data
       </Button>
     </div>
   );

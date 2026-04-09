@@ -35,13 +35,12 @@ export default function Home() {
             x402 Protocol Demo
           </p>
           <h1 className="font-headline text-5xl text-black mb-4 leading-tight">
-            There&apos;s a secret behind this paywall
+            This API costs $0.001 per request
           </h1>
           <p className="text-gray-600 text-base leading-relaxed max-w-lg mx-auto mb-10">
-            Pay{" "}
-            <span className="font-medium text-black">$0.001 USDC</span> on
-            Stellar testnet to reveal it. No API keys, no accounts — just
-            cryptography and the x402 protocol.
+            Pay with{" "}
+            <span className="font-medium text-black">USDC on Stellar testnet</span>.
+            No API keys, no accounts — just pay and get the data.
           </p>
 
           {/* Stats integrated into hero */}
