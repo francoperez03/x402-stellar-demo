@@ -148,7 +148,6 @@ Run the framework-specific install command via Bash:
 6. Check if `.env.example` already exists at the project root:
    - If it does NOT exist: create `.env.example` with the template content
    - If it DOES exist: check if it already contains `SERVER_STELLAR_ADDRESS`. If not, append the x402 section to the existing file
-7. Output: `"Created .env.example with required variables. Copy to .env.local and fill in your values."`
 
 ## Step 6 -- Scaffold Server/Middleware Files
 
@@ -161,7 +160,94 @@ Run the framework-specific install command via Bash:
 5. Extract the TypeScript code from the template's fenced code block
 6. Write to `{base_dir}/x402/adapter.ts`
 
-## Step 7 -- Summary
+## Step 7 -- Configure Environment (Interactive)
+
+Guide the user through setting up `.env.local` with the required values. Check if `.env.local` already exists and has values before prompting.
+
+### 7a -- Check existing .env.local
+
+1. Use Read to check if `.env.local` exists
+2. If it exists and already contains `SERVER_STELLAR_ADDRESS` with a non-empty value, output:
+   `"Environment already configured in .env.local. Skipping setup."`
+   Skip to Step 8.
+
+### 7b -- SERVER_STELLAR_ADDRESS
+
+Output the following explanation:
+
+```
+To receive payments, you need a Stellar account address.
+This is a public key that starts with "G" (56 characters).
+
+How to get one:
+  1. Go to https://laboratory.stellar.org/#account-creator?network=test
+  2. Click "Generate Keypair"
+  3. Save both keys -- you'll use the Public Key (G...) here
+  4. Click "Fund account on testnet" to get test XLM
+
+If you already have a Stellar address, paste it below.
+```
+
+Ask the user for the value. Accept any input that:
+- Starts with `G` and is 56 characters long
+- OR is empty (user wants to skip for now)
+
+If the user provides an invalid format, warn once: `"Stellar addresses start with G and are 56 characters. This doesn't look right, but I'll use it anyway."` and proceed.
+
+If the user skips (empty), set `SERVER_STELLAR_ADDRESS=` (empty value).
+
+### 7c -- FACILITATOR_API_KEY
+
+Output the following explanation:
+
+```
+The facilitator is a service (by OpenZeppelin) that verifies and settles
+x402 payments on your behalf. You need an API key to use it.
+
+How to get one:
+  1. Go to https://channels.openzeppelin.com/testnet/gen
+  2. Generate a new API key
+  3. Paste it below
+
+This takes ~30 seconds. I'll wait.
+```
+
+Ask the user for the value. Accept any non-empty string, or empty to skip.
+
+If the user skips (empty), set `FACILITATOR_API_KEY=` (empty value).
+
+### 7d -- Write .env.local
+
+Write `.env.local` with the collected values:
+
+```env
+# x402 Payment Configuration
+
+# Stellar public key (G...) that receives USDC payments
+SERVER_STELLAR_ADDRESS={collected_value}
+
+# OpenZeppelin facilitator endpoint
+FACILITATOR_URL=https://channels.openzeppelin.com/x402/testnet
+
+# API key from https://channels.openzeppelin.com/testnet/gen
+FACILITATOR_API_KEY={collected_value}
+```
+
+**Rules:**
+- Always set `FACILITATOR_URL` to the testnet endpoint (no need to ask -- testnet is the right default for init)
+- If `.env.local` already exists with OTHER variables (not x402-related), append the x402 section. Do not overwrite existing content.
+- Add `.env.local` to `.gitignore` if not already present (check first for idempotency)
+
+### 7e -- Report status
+
+If both values were provided:
+`"Environment configured. .env.local is ready."`
+
+If one or both were skipped:
+`"Created .env.local with partial configuration. Fill in the missing values before testing:"`
+Then list which variables are still empty.
+
+## Step 8 -- Summary
 
 Count the files created during this run and output:
 
@@ -170,18 +256,20 @@ Count the files created during this run and output:
 List each file with its relative path from the project root, for example:
 
 ```
-x402 initialized. Created 3 files:
+x402 initialized. Created 4 files:
   - lib/x402/config.ts
   - lib/x402/server.ts
   - .env.example
+  - .env.local
 ```
 
 For Fastify projects, the adapter file is also listed:
 
 ```
-x402 initialized. Created 4 files:
+x402 initialized. Created 5 files:
   - lib/x402/config.ts
   - lib/x402/server.ts
   - lib/x402/adapter.ts
   - .env.example
+  - .env.local
 ```
