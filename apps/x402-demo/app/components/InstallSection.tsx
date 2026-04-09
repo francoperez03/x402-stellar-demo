@@ -8,7 +8,7 @@ export function InstallSection() {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText("npx x402-engineer install");
+      await navigator.clipboard.writeText("https://x402-stellar-demo.vercel.app/install");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -38,15 +38,18 @@ export function InstallSection() {
         <h2 className="font-headline text-3xl text-black mb-3">
           x402 Engineer
         </h2>
-        <p className="text-gray-600 text-base leading-relaxed max-w-lg mx-auto mb-8">
-          Install the skill, then use slash commands to add micropayments to any
-          API endpoint.
+        <p className="text-gray-600 text-base leading-relaxed max-w-lg mx-auto mb-3">
+          A skill pack that teaches Claude Code how to add x402 micropayments to
+          any API endpoint.
         </p>
 
-        {/* Install command block */}
+        <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+          Paste this URL in Claude Code
+        </p>
+        {/* Install URL block */}
         <div className="bg-[#1A1A1A] rounded-lg p-4 flex items-center justify-between">
           <code className="font-mono text-sm text-gray-100">
-            npx x402-engineer install
+            https://x402-stellar-demo.vercel.app/install
           </code>
           <button
             onClick={handleCopy}
