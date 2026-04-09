@@ -40,11 +40,14 @@ export function InstallSection() {
         </h2>
         <p className="text-gray-600 text-base leading-relaxed max-w-lg mx-auto mb-3">
           A skill pack that teaches Claude Code how to add x402 micropayments to
-          any API endpoint.
+          any API endpoint. Install this Claude Code skill by running:{" "}
+          <code className="text-sm font-mono text-black bg-black/5 px-1.5 py-0.5 rounded">
+            npx @x402/engineer install
+          </code>
         </p>
 
         <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
-          Paste this URL in Claude Code
+          Or paste this URL in Claude Code
         </p>
         {/* Install URL block */}
         <div className="bg-[#1A1A1A] rounded-lg p-4 flex items-center justify-between">

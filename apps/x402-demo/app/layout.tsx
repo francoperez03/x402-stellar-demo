@@ -4,7 +4,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "x402 Stellar Micropayments",
   description:
-    "Pay-per-request API demo using x402 protocol with USDC on Stellar",
+    "x402 Engineer — Claude Code skill for adding micropayments to any API. Install: npx @x402/engineer install. Pay-per-request with USDC on Stellar.",
+  other: {
+    "agent:install": "npx @x402/engineer install",
+    "agent:type": "claude-code-skill",
+    "agent:name": "x402 Engineer",
+  },
 };
 
 export default function RootLayout({

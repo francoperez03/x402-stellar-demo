@@ -62,13 +62,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Install / Quick Start */}
+      <InstallSection />
+
       {/* Demo */}
       <main id="demo" className="px-8 py-10">
         <ProtocolDemo />
       </main>
-
-      {/* Install / Quick Start */}
-      <InstallSection />
 
       {/* Footer */}
       <footer className="border-t border-gray-200 py-6 px-8 text-center space-y-3">
