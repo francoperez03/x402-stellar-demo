@@ -1,27 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const commands = [
-  {
-    name: "/x402:init",
-    description: "Bootstrap x402 payment config in your project",
-  },
-  {
-    name: "/x402:add-paywall",
-    description: "Protect any API endpoint with a paywall",
-  },
-  {
-    name: "/x402:debug",
-    description: "Diagnose x402 configuration issues",
-  },
-  {
-    name: "/x402:explain",
-    description: "See how x402 is wired in your project",
-  },
-];
-
-const frameworks = ["Next.js", "Express", "Fastify", "Hono"];
+import Link from "next/link";
 
 export function InstallSection() {
   const [copied, setCopied] = useState(false);
@@ -42,12 +22,12 @@ export function InstallSection() {
         <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
           Get Started
         </p>
-        <h2 className="font-headline text-4xl text-black mb-3">
+        <h2 className="font-headline text-3xl text-black mb-3">
           Add x402 to your API
         </h2>
         <p className="text-gray-600 text-base leading-relaxed max-w-lg mx-auto mb-10">
-          A Claude Code skill pack for x402. One command to install, then use
-          slash commands to add micropayments to any endpoint.
+          A Claude Code skill pack. One command to install, slash commands to
+          add micropayments.
         </p>
 
         {/* Install command block */}
@@ -92,46 +72,15 @@ export function InstallSection() {
           </button>
         </div>
 
-        {/* Slash commands */}
-        <h3 className="font-medium text-lg text-black mt-10 mb-4">
-          Available Commands
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
-          {commands.map((cmd) => (
-            <div
-              key={cmd.name}
-              className="bg-white rounded-lg border border-gray-200 p-4"
-            >
-              <p className="font-mono font-bold text-sm text-black">
-                {cmd.name}
-              </p>
-              <p className="text-sm text-gray-600 mt-1">{cmd.description}</p>
-            </div>
-          ))}
+        {/* Link to full install guide */}
+        <div className="mt-4">
+          <Link
+            href="/install"
+            className="text-sm text-gray-500 hover:text-black transition-colors"
+          >
+            See full install guide, commands & frameworks &rarr;
+          </Link>
         </div>
-
-        {/* Supported frameworks */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500 mb-3">Works with</p>
-          <div className="flex items-center justify-center gap-4">
-            {frameworks.map((fw, i) => (
-              <span key={fw} className="flex items-center gap-4">
-                <span className="text-sm font-medium text-gray-700">{fw}</span>
-                {i < frameworks.length - 1 && (
-                  <span className="text-gray-300" aria-hidden="true">
-                    &middot;
-                  </span>
-                )}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Recommended workflow */}
-        <p className="text-xs text-gray-400 mt-6 text-center font-mono">
-          /x402:init &rarr; /x402:add-paywall &rarr; /x402:explain &rarr;
-          /x402:debug
-        </p>
       </div>
     </section>
   );
