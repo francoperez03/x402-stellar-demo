@@ -6,7 +6,7 @@ const LLMS_TXT = `# x402 Engineer — Claude Code Skill
 
 ## Install
 
-npx @x402/engineer install
+npx x402-engineer install
 
 Or paste this URL in Claude Code: https://x402-stellar-demo.vercel.app/install
 

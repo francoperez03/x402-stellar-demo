@@ -42,7 +42,7 @@ export function InstallSection() {
           A skill pack that teaches Claude Code how to add x402 micropayments to
           any API endpoint. Install this Claude Code skill by running:{" "}
           <code className="text-sm font-mono text-black bg-black/5 px-1.5 py-0.5 rounded">
-            npx @x402/engineer install
+            npx x402-engineer install
           </code>
         </p>
 
