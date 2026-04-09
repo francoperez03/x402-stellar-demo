@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-04-07)
 Phase: 4 of 4 (Distribution)
 Plan: 3 of 3 in current phase (COMPLETE)
 Status: Complete
-Last activity: 2026-04-08 - Completed quick task 260408-sqe: Add greenfield support to /x402:init
+Last activity: 2026-04-08 - Completed quick task 260408-txi: Add /install route with skill page and UX
 
 Progress: [██████████] 100%
 
@@ -102,9 +102,10 @@ None yet.
 |---|-------------|------|--------|-----------|
 | 260408-rt3 | Add install/quick-start section to x402-demo site with npx install command and usage instructions | 2026-04-08 | f6125f2 | [260408-rt3-add-install-quick-start-section-to-x402-](./quick/260408-rt3-add-install-quick-start-section-to-x402-/) |
 | 260408-sqe | Add greenfield project support to /x402:init with Step 0 detection and Express/Fastify/Hono templates | 2026-04-08 | 01d56e6 | [260408-sqe-add-greenfield-support-to-x402-init-dete](./quick/260408-sqe-add-greenfield-support-to-x402-init-dete/) |
+| 260408-txi | Add /install route with full skill page and simplify homepage InstallSection to CTA | 2026-04-08 | 4fa1490 | [260408-txi-add-install-route-with-skill-page-and-ux](./quick/260408-txi-add-install-route-with-skill-page-and-ux/) |
 
 ## Session Continuity
 
-Last session: 2026-04-08T23:47:00Z
-Stopped at: Completed quick task 260408-sqe
+Last session: 2026-04-09T01:00:52Z
+Stopped at: Completed quick task 260408-txi
 Resume file: None
