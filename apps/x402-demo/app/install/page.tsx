@@ -3,9 +3,9 @@ import Link from "next/link";
 import { CopyButton } from "./CopyButton";
 
 export const metadata: Metadata = {
-  title: "Install x402 Engineer | Claude Code Skill for x402 Micropayments",
+  title: "Install x402 Skill | Claude Code Skill for Stellar Micropayments",
   description:
-    "Add x402 micropayments to any API in seconds. Install the x402-engineer skill for Claude Code: npx x402-engineer install. Supports Next.js, Express, Fastify, Hono.",
+    "Claude Code skill for adding x402 micropayments to any API. Install: npx x402-engineer install. Slash commands for Next.js, Express, Fastify, Hono.",
 };
 
 const commands = [
@@ -34,13 +34,13 @@ const steps = [
     number: 1,
     title: "Install the skill",
     description:
-      "Run the command above. It copies x402 reference docs and slash commands into your Claude Code skills directory.",
+      "Run the command below. It copies x402 reference docs and slash commands into your Claude Code skills directory (~/.claude/skills/).",
   },
   {
     number: 2,
     title: "Initialize your project",
     description:
-      "Use /x402:init to scaffold x402 config, wallet setup, and payment middleware for your framework.",
+      "Use /x402:init in Claude Code to scaffold x402 config, wallet setup, and payment middleware for your framework.",
   },
   {
     number: 3,
@@ -62,27 +62,53 @@ export default function InstallPage() {
           &larr; Back to demo
         </Link>
 
-        <div className="mt-8 mb-12">
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
-            Install
-          </p>
+        <div className="mt-8 mb-10">
+          <div className="inline-flex items-center gap-2 bg-[#D4A017]/15 text-[#8B6914] text-xs font-medium px-3 py-1 rounded-full mb-4">
+            <svg
+              className="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
+            </svg>
+            Claude Code Skill
+          </div>
           <h1 className="font-headline text-4xl text-black mb-3">
-            Add x402 to your API
+            x402 Engineer
           </h1>
           <p className="text-gray-600 text-base leading-relaxed">
-            A Claude Code skill pack for the x402 protocol. One command to
-            install, then use slash commands to add micropayments to any
-            endpoint.
+            A skill pack that teaches Claude Code how to add x402 micropayments
+            to any API. Install once, then use slash commands to wire up
+            pay-per-request endpoints on Stellar.
           </p>
         </div>
 
         {/* Install command block */}
-        <div className="bg-[#1A1A1A] rounded-lg p-4 flex items-center justify-between mb-16">
-          <pre className="font-mono text-sm text-gray-100 m-0">
-            npx x402-engineer install
-          </pre>
-          <CopyButton text="npx x402-engineer install" />
+        <div className="mb-4">
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+            Paste this URL in Claude Code
+          </p>
+          <div className="bg-[#1A1A1A] rounded-lg p-4 flex items-center justify-between">
+            <pre className="font-mono text-sm text-gray-100 m-0">
+              https://x402-stellar-demo.vercel.app/install
+            </pre>
+            <CopyButton text="https://x402-stellar-demo.vercel.app/install" />
+          </div>
         </div>
+
+        {/* Alternative: npx */}
+        <p className="text-xs text-gray-400 mb-16">
+          Or run directly:{" "}
+          <code className="font-mono text-gray-500">
+            npx x402-engineer install
+          </code>
+        </p>
 
         {/* How it works */}
         <div className="mb-16">
@@ -114,7 +140,7 @@ export default function InstallPage() {
         {/* Slash commands */}
         <div className="mb-16">
           <h2 className="font-headline text-2xl text-black mb-6">
-            Available Commands
+            Slash Commands
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {commands.map((cmd) => (
@@ -132,8 +158,8 @@ export default function InstallPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4 text-center font-mono">
-            Recommended: /x402:init &rarr; /x402:add-paywall &rarr;
-            /x402:explain &rarr; /x402:debug
+            /x402:init &rarr; /x402:add-paywall &rarr; /x402:explain &rarr;
+            /x402:debug
           </p>
         </div>
 

@@ -19,15 +19,28 @@ export function InstallSection() {
   return (
     <section className="bg-[#F5F0E8] px-8 py-16 text-center">
       <div className="max-w-2xl mx-auto">
-        <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
-          Get Started
-        </p>
+        <div className="inline-flex items-center gap-2 bg-[#D4A017]/15 text-[#8B6914] text-xs font-medium px-3 py-1 rounded-full mb-4">
+          <svg
+            className="w-3.5 h-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
+          </svg>
+          Claude Code Skill
+        </div>
         <h2 className="font-headline text-3xl text-black mb-3">
-          Add x402 to your API
+          x402 Engineer
         </h2>
-        <p className="text-gray-600 text-base leading-relaxed max-w-lg mx-auto mb-10">
-          A Claude Code skill pack. One command to install, slash commands to
-          add micropayments.
+        <p className="text-gray-600 text-base leading-relaxed max-w-lg mx-auto mb-8">
+          Install the skill, then use slash commands to add micropayments to any
+          API endpoint.
         </p>
 
         {/* Install command block */}
@@ -78,7 +91,7 @@ export function InstallSection() {
             href="/install"
             className="text-sm text-gray-500 hover:text-black transition-colors"
           >
-            See full install guide, commands & frameworks &rarr;
+            Full guide: commands, frameworks & workflow &rarr;
           </Link>
         </div>
       </div>

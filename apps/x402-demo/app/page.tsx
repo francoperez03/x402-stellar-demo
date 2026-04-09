@@ -1,11 +1,35 @@
+import Link from "next/link";
 import { InstallSection } from "./components/InstallSection";
 import { ProtocolDemo } from "./components/ProtocolDemo";
 
 export default function Home() {
   return (
     <>
+      {/* Nav */}
+      <nav className="bg-[#F5F0E8] px-8 pt-6 pb-0">
+        <div className="max-w-2xl mx-auto flex items-center justify-between">
+          <Link href="/" className="font-headline text-lg text-black">
+            x402
+          </Link>
+          <div className="flex items-center gap-5">
+            <a
+              href="#demo"
+              className="text-sm text-gray-500 hover:text-black transition-colors"
+            >
+              Try it
+            </a>
+            <Link
+              href="/install"
+              className="text-sm font-medium text-white bg-[#D4A017] hover:bg-[#b8890f] px-4 py-1.5 rounded-md transition-colors"
+            >
+              Install
+            </Link>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero + Stats as one block */}
-      <section className="bg-[#F5F0E8] px-8 pt-20 pb-0 text-center">
+      <section className="bg-[#F5F0E8] px-8 pt-12 pb-0 text-center">
         <div className="max-w-2xl mx-auto">
           <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
             x402 Protocol Demo
@@ -39,7 +63,7 @@ export default function Home() {
       </section>
 
       {/* Demo */}
-      <main className="px-8 py-10">
+      <main id="demo" className="px-8 py-10">
         <ProtocolDemo />
       </main>
 
@@ -88,6 +112,12 @@ export default function Home() {
         <p className="text-xs text-gray-400">
           Made with ❤️ by Franco Perez
         </p>
+        <Link
+          href="/install"
+          className="inline-block text-xs text-gray-400 hover:text-black transition-colors"
+        >
+          Install skill &rarr;
+        </Link>
       </footer>
     </>
   );
